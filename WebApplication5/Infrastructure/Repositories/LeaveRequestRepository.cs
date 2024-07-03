@@ -1,9 +1,12 @@
-﻿/*using Core.Entities;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Core.Entities;
 using Core.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using WebApplication5.Data;
 
-namespace Infrastructure.Data
+namespace WebApplication5.Infrastructure.Repositories
 {
     public class LeaveRequestRepository : ILeaveRequestRepository
     {
@@ -25,11 +28,10 @@ namespace Infrastructure.Data
             return await _context.LeaveRequests.FindAsync(id);
         }
 
-        public async Task<IEnumerable<LeaveRequest>> GetPendingLeaveRequestsAsync(int adminId)
+        public async Task<IEnumerable<LeaveRequest>> GetPendingLeaveRequestsAsync()
         {
-            // Burada adminId'ye bağlı olan kullanıcıların bekleyen izin isteklerini getirmek için gerekli sorgulama yapılmalıdır.
             return await _context.LeaveRequests
-                .Where(lr => !lr.Approved.HasValue && lr.UserId == adminId)
+                .Where(lr => !lr.Approved.HasValue)
                 .ToListAsync();
         }
 
@@ -39,4 +41,4 @@ namespace Infrastructure.Data
             await _context.SaveChangesAsync();
         }
     }
-}*/
+}

@@ -1,7 +1,12 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Core.Entities;
+using Core.Enums;
+using Core.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using WebApplication5.Data;
+using WebApplication5.Models;
 
 namespace Infrastructure.Repositories
 {
@@ -34,6 +39,13 @@ namespace Infrastructure.Repositories
         {
             _context.Users.Update(user);
             return await _context.SaveChangesAsync() > 0;
+        }
+
+        public async Task<IEnumerable<User>> GetUsersByAdminIdAsync(int adminId)
+        {
+            return await _context.Users
+                .Where(u => u.Role == UserRole.User && u.Id == adminId) // Kullanıcıların adminId'ye göre filtrelenmesi
+                .ToListAsync();
         }
     }
 }

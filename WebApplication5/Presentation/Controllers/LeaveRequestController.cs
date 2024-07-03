@@ -1,10 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-/*using Core.Services;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using Core.Services;
 using WebApplication5.Models;
+using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
+using AutoMapper;
+using Core.Entities;
+using Core.Enums;
+using Microsoft.IdentityModel.Tokens;
 
 namespace WebApplication5.Controllers
 {
@@ -20,40 +22,67 @@ namespace WebApplication5.Controllers
         }
 
         [Authorize]
-        [HttpPost("request")]
+        [HttpPost("create")]
         public async Task<IActionResult> CreateLeaveRequest([FromBody] LeaveRequestDto leaveRequestDto)
         {
-            var userId = int.Parse(User.Identity.Name); // Kullanıcı ID'sini elde et
-            var result = await _leaveRequestService.CreateLeaveRequestAsync(userId, leaveRequestDto.LeaveType, leaveRequestDto.StartDate, leaveRequestDto.EndDate, leaveRequestDto.Reason);
-            if (result) return Ok("Leave request created.");
-            return BadRequest("Failed to create leave request.");
+
+            var leaveRequest = new LeaveRequest();
+            var config = new MapperConfiguration(cfg => cfg.CreateMap<LeaveRequestDto, LeaveRequest>());
+            var mapper = config.CreateMapper();
+            var destination = mapper.Map<LeaveRequest>(leaveRequestDto);
+            
+                var result = await _leaveRequestService.CreateLeaveRequestAsync(destination);
+
+                if (result)
+                    return Ok();
+                return BadRequest();
+            
+            
         }
 
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         [HttpGet("pending")]
         public async Task<IActionResult> GetPendingLeaveRequests()
         {
-            var adminId = int.Parse(User.Identity.Name); // Admin ID'sini elde et
-            var leaveRequests = await _leaveRequestService.GetPendingLeaveRequestsAsync(adminId);
-            return Ok(leaveRequests);
+            var requests = await _leaveRequestService.GetPendingLeaveRequestsAsync();
+            return Ok(requests);
         }
 
-        [Authorize]
-        [HttpPost("approve/{id}")]
-        public async Task<IActionResult> ApproveLeaveRequest(int id)
+        [Authorize(Roles = "Admin")]
+        [HttpPost("approve")]
+        public async Task<IActionResult> ApproveLeaveRequest([FromBody] LeaveRequest leaveRequest)
         {
-            var result = await _leaveRequestService.ApproveLeaveRequestAsync(id);
-            if (result) return Ok("Leave request approved.");
-            return BadRequest("Failed to approve leave request.");
+            if (leaveRequest == null)
+            {
+                return BadRequest("Invalid leave request");
+            }
+
+            var result = await _leaveRequestService.ApproveLeaveRequestAsync(leaveRequest);
+            if (result)
+                return Ok();
+    
+            // Detaylı hata mesajı ekleyin
+            return BadRequest("Failed to approve leave request. Please check if the request is already approved or if the request ID is correct.");
         }
 
-        [Authorize]
-        [HttpPost("reject/{id}")]
-        public async Task<IActionResult> RejectLeaveRequest(int id)
+
+        [Authorize(Roles = "Admin")]
+        [HttpPost("reject")]
+        public async Task<IActionResult> RejectLeaveRequest([FromBody] LeaveRequest leaveRequest)
         {
-            var result = await _leaveRequestService.RejectLeaveRequestAsync(id);
-            if (result) return Ok("Leave request rejected.");
-            return BadRequest("Failed to reject leave request.");
+            if (leaveRequest == null)
+            {
+                return BadRequest("Invalid leave request");
+            }
+
+            var result = await _leaveRequestService.RejectLeaveRequestAsync(leaveRequest);
+            if (result)
+            {
+                return Ok();
+            }
+
+            return BadRequest("Failed to reject leave request");
         }
+
     }
-}*/
+}

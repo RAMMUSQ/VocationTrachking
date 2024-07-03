@@ -27,7 +27,7 @@ namespace WebApplication5.Middlewares
                 _logger.LogInformation("Skipping authentication for specific paths.");
                 await _next(context);
                 return;
-            }
+            }   
 
             var token = context.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
 

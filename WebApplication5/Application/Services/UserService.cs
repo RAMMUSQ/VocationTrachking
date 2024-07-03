@@ -16,16 +16,32 @@ namespace WebApplication5.Services
             _userRepository = userRepository;
         }
 
-        public async Task<bool> RegisterAsync(RegisterModel model)
+        public async Task<(bool IsSuccess, string ErrorMessage)> RegisterAsync(RegisterModel model)
         {
+            // Kullanıcı adı kontrolü
+            var existingUser = await _userRepository.GetUserByUsernameAsync(model.Username);
+            if (existingUser != null)
+            {
+                return (false, "Username already taken.");
+            }
+
             var user = new User
             {
                 Username = model.Username,
-                Password = model.Password, // Parola güvenliği için hashing yapılması önerilir
+                Password = (model.Password),
+               // Birthdate = model.Birthdate ,
+               /* YearsWorked = model.YearsWorked ,
+                Department = model.Department,
+                Occupation = model.Occupation,
+                Age = model.Age,
+                Email = model.Email,*/
+                // Parola güvenliği için hashing yapılması önerilir 
                 Role = UserRole.User
+               
             };
 
-            return await _userRepository.AddAsync(user);
+            var result = await _userRepository.AddAsync(user);
+            return (result, result ? null : "Failed to register user.");
         }
 
         public async Task<User> ValidateUserAsync(string username, string password)

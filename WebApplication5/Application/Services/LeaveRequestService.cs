@@ -1,11 +1,10 @@
-﻿/*using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Core.Entities;
 using Core.Interfaces;
-using Core.Services;
 
-namespace Infrastructure.Services
+namespace Core.Services
 {
     public class LeaveRequestService : ILeaveRequestService
     {
@@ -16,11 +15,12 @@ namespace Infrastructure.Services
             _leaveRequestRepository = leaveRequestRepository;
         }
 
-        public async Task<bool> CreateLeaveRequestAsync(int userId, string leaveType, DateTime startDate, DateTime endDate, string reason)
+        public async Task<bool> CreateLeaveRequestAsync(int userId, string leaveType, DateTime startDate, DateTime endDate, string reason,string username)
         {
             var leaveRequest = new LeaveRequest
             {
-                UserId = userId,
+                Username = username,
+                UserId  = userId ,
                 LeaveType = leaveType,
                 StartDate = startDate,
                 EndDate = endDate,
@@ -31,29 +31,58 @@ namespace Infrastructure.Services
             return true;
         }
 
-        public async Task<IEnumerable<LeaveRequest>> GetPendingLeaveRequestsAsync(int adminId)
+        public async Task<bool> CreateLeaveRequestAsync(LeaveRequest leaveRequest)
         {
-            return await _leaveRequestRepository.GetPendingLeaveRequestsAsync(adminId);
+            
+
+            await _leaveRequestRepository.AddLeaveRequestAsync(leaveRequest);
+            return true;
+        }
+        
+
+        public async Task<IEnumerable<LeaveRequest>> GetPendingLeaveRequestsAsync()
+        {
+            return await _leaveRequestRepository.GetPendingLeaveRequestsAsync();
         }
 
-        public async Task<bool> ApproveLeaveRequestAsync(int requestId)
+        public async Task<bool> ApproveLeaveRequestAsync(LeaveRequest leaveRequest)
         {
-            var leaveRequest = await _leaveRequestRepository.GetLeaveRequestByIdAsync(requestId);
-            if (leaveRequest == null) return false;
+            var existingRequest = await _leaveRequestRepository.GetLeaveRequestByIdAsync(leaveRequest.Id);
+            if (existingRequest == null)
+            {
+                Console.WriteLine("Leave request not found with Id: " + leaveRequest.Id);
+                return false;
+            }
+            if (existingRequest.Approved.HasValue)
+            {
+                Console.WriteLine("Leave request is already approved or rejected. Approved value: " + existingRequest.Approved);
+                return false;
+            }
 
-            leaveRequest.Approved = true;
-            await _leaveRequestRepository.UpdateLeaveRequestAsync(leaveRequest);
+            existingRequest.Approved = true;
+            await _leaveRequestRepository.UpdateLeaveRequestAsync(existingRequest);
             return true;
         }
 
-        public async Task<bool> RejectLeaveRequestAsync(int requestId)
+        public async Task<bool> RejectLeaveRequestAsync(LeaveRequest leaveRequest)
         {
-            var leaveRequest = await _leaveRequestRepository.GetLeaveRequestByIdAsync(requestId);
-            if (leaveRequest == null) return false;
+            var existingRequest = await _leaveRequestRepository.GetLeaveRequestByIdAsync(leaveRequest.Id);
+            if (existingRequest == null)
+            {
+                Console.WriteLine($"Leave request with Id {leaveRequest.Id} not found.");
+                return false;
+            }
 
-            leaveRequest.Approved = false;
-            await _leaveRequestRepository.UpdateLeaveRequestAsync(leaveRequest);
+            if (existingRequest.Approved.HasValue)
+            {
+                Console.WriteLine($"Leave request with Id {leaveRequest.Id} is already approved or rejected.");
+                return false;
+            }
+
+            existingRequest.Approved = false;
+            await _leaveRequestRepository.UpdateLeaveRequestAsync(existingRequest);
+            Console.WriteLine($"Leave request with Id {leaveRequest.Id} has been rejected.");
             return true;
         }
     }
-}*/
+}

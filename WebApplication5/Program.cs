@@ -1,4 +1,6 @@
 using System.Text;
+using Core.Interfaces;
+using Core.Services;
 using Infrastructure.Repositories;
 using WebApplication5.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -25,7 +27,8 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     var conStr = builder.Configuration.GetConnectionString("MySqlConStr");
     options.UseMySql(conStr, ServerVersion.AutoDetect(conStr));
 });
-
+builder.Services.AddScoped<ILeaveRequestService ,LeaveRequestService >();
+builder.Services.AddScoped<ILeaveRequestRepository, LeaveRequestRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<ITokenRepository, TokenRepository>();
 builder.Services.AddScoped<ITokenService, TokenService>();
@@ -54,6 +57,7 @@ builder.Services.AddAuthentication(options =>
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+//builder.Services.AddAutoMapper(typeof(Startup));
 
 var app = builder.Build();
 

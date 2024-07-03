@@ -20,14 +20,14 @@ namespace WebApplication5.Controllers
         }
 
         [HttpPost("register")]
-        public async Task<IActionResult> Register([FromBody] RegisterModel model)
+        public async Task<IActionResult> Register(RegisterModel model)
         {
             var result = await _userService.RegisterAsync(model);
-            if (result)
+            if (!result.IsSuccess)
             {
-                return Ok(new { Message = "User registered successfully" });
+                return BadRequest(new { Message = result.ErrorMessage });
             }
-            return BadRequest(new { Message = "User registration failed" });
+            return Ok(new { Message = "User registered successfully." });
         }
 
         [HttpPost("login")]

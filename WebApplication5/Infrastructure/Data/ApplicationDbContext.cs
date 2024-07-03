@@ -20,7 +20,8 @@ public class ApplicationDbContext : DbContext
     public DbSet<Token> Tokens { get; set; }
 
     public DbSet<UserGroupMember> UserGroupMembers { get; set; }
-    
+    public DbSet<LeaveRequest> LeaveRequests { get; set; }
+
     //public DbSet<LeaveRequest> LeaveRequests { get; set; }
 }
 /*using Microsoft.EntityFrameworkCore;

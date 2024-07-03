@@ -1,4 +1,5 @@
-﻿/*using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Core.Entities;
 
 namespace Core.Interfaces
@@ -7,7 +8,7 @@ namespace Core.Interfaces
     {
         Task AddLeaveRequestAsync(LeaveRequest leaveRequest);
         Task<LeaveRequest> GetLeaveRequestByIdAsync(int id);
-        Task<IEnumerable<LeaveRequest>> GetPendingLeaveRequestsAsync(int adminId);
+        Task<IEnumerable<LeaveRequest>> GetPendingLeaveRequestsAsync();
         Task UpdateLeaveRequestAsync(LeaveRequest leaveRequest);
     }
-}*/
+}

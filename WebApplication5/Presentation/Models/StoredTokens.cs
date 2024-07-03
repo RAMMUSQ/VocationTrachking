@@ -13,6 +13,6 @@ public class StoredTokens {
     
     public DateTime? CreatedDate { get; set; }
 
-}
+}//buras kullanılmıyor gibi duruyor düzenlemek lazım
 
 

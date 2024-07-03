@@ -6,7 +6,7 @@ namespace WebApplication5.Services
 {
     public interface IUserService
     {
-        Task<bool> RegisterAsync(RegisterModel model);
+        Task<(bool IsSuccess, string ErrorMessage)> RegisterAsync(RegisterModel model);
         Task<User> ValidateUserAsync(string username, string password);
         Task<bool> SetUserRoleToAdmin(string username);
     }
