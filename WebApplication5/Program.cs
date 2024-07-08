@@ -14,9 +14,7 @@ using WebApplication5.Middlewares;
 using WebApplication5.Data;
 using WebApplication5.Infrastructure.Services;
 using Core.Enums;
-using Hangfire;
-using Hangfire.MySql;
-using Microsoft.Extensions.DependencyInjection;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -42,13 +40,6 @@ builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IGroupService, GroupService>();
 builder.Services.AddScoped<IGroupRepository, GroupRepository>();
 
-// Hangfire Configuration
-builder.Services.AddHangfire(config =>
-{
-    var hangfireConStr = builder.Configuration.GetConnectionString("MySqlConStr");
-    config.UseStorage(new MySqlStorage(hangfireConStr));
-});
-builder.Services.AddHangfireServer();
 
 builder.Services.AddAuthentication(options =>
 {
@@ -105,10 +96,6 @@ app.UseRouting();
 app.UseAuthentication(); // Kimlik doğrulama middleware'ini yetkilendirmeden önce kullanın
 app.UseMiddleware<AuthMiddleware>(); // AuthMiddleware burada olmalı
 app.UseAuthorization();
-
-// Hangfire Dashboard
-app.UseHangfireDashboard();
-
 app.MapControllers();
 
 app.Run();
