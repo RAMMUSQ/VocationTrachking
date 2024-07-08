@@ -47,5 +47,10 @@ namespace Infrastructure.Repositories
                 .Where(u => u.Role == UserRole.User && u.Id == adminId) // Kullanıcıların adminId'ye göre filtrelenmesi
                 .ToListAsync();
         }
+        
+        public async Task<User> GetUserByIdAsync(int userId)
+        {
+            return await _context.Users.FindAsync(userId);
+        }
     }
 }

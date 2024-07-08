@@ -1,6 +1,7 @@
 ﻿using Core.Entities;
 using Microsoft.EntityFrameworkCore;
 using WebApplication5.Core;
+using WebApplication5.Models;
 
 namespace WebApplication5.Data;
 
@@ -21,6 +22,8 @@ public class ApplicationDbContext : DbContext
 
     public DbSet<UserGroupMember> UserGroupMembers { get; set; }
     public DbSet<LeaveRequest> LeaveRequests { get; set; }
+    
+    public DbSet<AnnualLeaveRight> AnnualLeaveRights { get; set; }
 
     //public DbSet<LeaveRequest> LeaveRequests { get; set; }
 }

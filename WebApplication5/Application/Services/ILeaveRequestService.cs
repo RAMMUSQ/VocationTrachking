@@ -9,5 +9,6 @@ namespace Core.Services
         Task<IEnumerable<LeaveRequest>> GetPendingLeaveRequestsAsync();
         Task<bool> ApproveLeaveRequestAsync(LeaveRequest leaveRequest);
         Task<bool> RejectLeaveRequestAsync(LeaveRequest leaveRequest);
+        
     }
 }

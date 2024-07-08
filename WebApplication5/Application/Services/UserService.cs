@@ -3,21 +3,36 @@ using WebApplication5.Models;
 using Infrastructure.Repositories;
 using Core.Entities;
 using Core.Enums;
+using WebApplication5.Data;
 
 namespace WebApplication5.Services
 {
     public class UserService : IUserService
     {
         private readonly IUserRepository _userRepository;
-        private IUserService _userServiceImplementation;
+        //private IUserService _userServiceImplementation;
+        private readonly ApplicationDbContext _context;
 
-        public UserService(IUserRepository userRepository)
+        public UserService(IUserRepository userRepository, ApplicationDbContext context)
         {
             _userRepository = userRepository;
+            _context = context;
         }
 
         public async Task<(bool IsSuccess, string ErrorMessage)> RegisterAsync(RegisterModel model)
-        {
+        { 
+            if (_userRepository == null)
+            {
+                throw new InvalidOperationException("User repository is not initialized.");
+            }
+            if (model == null)
+            {
+                throw new ArgumentNullException(nameof(model), "Register model cannot be null.");
+            }
+            if (_context == null)
+            {
+                throw new InvalidOperationException("Database context is not initialized.");
+            }
             // Kullanıcı adı kontrolü
             var existingUser = await _userRepository.GetUserByUsernameAsync(model.Username);
             if (existingUser != null)
@@ -28,21 +43,42 @@ namespace WebApplication5.Services
             var user = new User
             {
                 Username = model.Username,
-                Password = (model.Password),
-               // Birthdate = model.Birthdate ,
-               /* YearsWorked = model.YearsWorked ,
+                Password = model.Password, // Parola güvenliği için hashing yapılması önerilir 
+                Birthdate = model.Birthdate,
                 Department = model.Department,
                 Occupation = model.Occupation,
+                StartDateForworks = model.StartDateForworks,
                 Age = model.Age,
-                Email = model.Email,*/
-                // Parola güvenliği için hashing yapılması önerilir 
-                Role = UserRole.User
-               
+                Email = model.Email,
+                Role = UserRole.User // KURALLAR GELECEK
             };
 
             var result = await _userRepository.AddAsync(user);
-            return (result, result ? null : "Failed to register user.");
+
+            if (result)
+            {
+                // Kullanıcının işe başlama tarihinden itibaren geçen yılı hesapla
+                var totalDaysWorked = (DateTime.UtcNow - user.StartDateForworks).TotalDays;
+                int yearsWorked = (int)(totalDaysWorked / 365);
+                int leaveDays = yearsWorked * 14; // Her yıl için 14 gün
+
+                var leaveRight = new AnnualLeaveRight
+                {
+                    UserId = user.Id,
+                    LeaveDays = leaveDays
+                };
+
+                _context.AnnualLeaveRights.Add(leaveRight);
+                await _context.SaveChangesAsync();
+
+                return (true, null);
+            }
+
+            return (false, "Failed to register user.");
+
+            return (false, "Failed to register user.");
         }
+
 
         public async Task<User> ValidateUserAsync(string username, string password)
         {

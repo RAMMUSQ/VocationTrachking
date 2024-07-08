@@ -6,9 +6,10 @@
         public string Password { get; set; }
 
 
-       // public DateTime Birthdate { get; set; }
+        public DateTime Birthdate { get; set; }
 
-        public int YearsWorked { get; set; }
+        public DateTime StartDateForworks{ get; set; }
+      
         
         public string Department { get; set; }
         
