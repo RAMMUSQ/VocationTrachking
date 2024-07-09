@@ -14,6 +14,7 @@
           "Hangfire.Core": "1.8.14",
           "Hangfire.MemoryStorage": "1.8.1.1",
           "Hangfire.MySql": "0.0.7",
+          "Infrastructure": "1.0.0",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "6.0.0",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "6.0.30",
           "Microsoft.AspNetCore.Identity.UI": "6.0.30",
@@ -21,6 +22,7 @@
           "MySql.EntityFrameworkCore": "6.0.1",
           "Newtonsoft.Json": "13.0.3",
           "Pomelo.EntityFrameworkCore.MySql": "6.0.1",
+          "Presentation": "1.0.0",
           "Quartz": "3.10.0",
           "Swashbuckle.AspNetCore": "6.2.3",
           "System.IdentityModel.Tokens.Jwt": "6.15.0"
@@ -1059,6 +1061,41 @@
             "fileVersion": "6.0.21.52210"
           }
         }
+      },
+      "Application/1.0.0": {
+        "dependencies": {
+          "AutoMapper": "6.0.2",
+          "Domain": "1.0.0",
+          "Microsoft.EntityFrameworkCore": "6.0.30",
+          "Presentation": "1.0.0",
+          "System.IdentityModel.Tokens.Jwt": "6.15.0"
+        },
+        "runtime": {
+          "Application.dll": {}
+        }
+      },
+      "Domain/1.0.0": {
+        "runtime": {
+          "Domain.dll": {}
+        }
+      },
+      "Infrastructure/1.0.0": {
+        "dependencies": {
+          "Application": "1.0.0",
+          "Microsoft.EntityFrameworkCore": "6.0.30",
+          "Presentation": "1.0.0"
+        },
+        "runtime": {
+          "Infrastructure.dll": {}
+        }
+      },
+      "Presentation/1.0.0": {
+        "dependencies": {
+          "Domain": "1.0.0"
+        },
+        "runtime": {
+          "Presentation.dll": {}
+        }
       }
     }
   },
@@ -1837,6 +1874,26 @@
       "sha512": "sha512-IXoJOXIqc39AIe+CIR7koBtRGMiCt/LPM3lI+PELtDIy9XdyeSrwXFdWV9dzJ2Awl0paLWUaknLxFQ5HpHZUog==",
       "path": "system.windows.extensions/6.0.0",
       "hashPath": "system.windows.extensions.6.0.0.nupkg.sha512"
+    },
+    "Application/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Infrastructure/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Presentation/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     }
   }
 }

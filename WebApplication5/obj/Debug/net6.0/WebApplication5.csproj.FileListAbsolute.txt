@@ -154,3 +154,11 @@ C:\Users\ramazan.bakan\Desktop\odealprojects\VocationTrackingSystem\WebApplicati
 C:\Users\ramazan.bakan\Desktop\odealprojects\VocationTrackingSystem\WebApplication5\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll
 C:\Users\ramazan.bakan\Desktop\odealprojects\VocationTrackingSystem\WebApplication5\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\ramazan.bakan\Desktop\odealprojects\VocationTrackingSystem\WebApplication5\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
+C:\Users\ramazan.bakan\Desktop\odealprojects\VocationTrackingSystem\WebApplication5\bin\Debug\net6.0\Application.dll
+C:\Users\ramazan.bakan\Desktop\odealprojects\VocationTrackingSystem\WebApplication5\bin\Debug\net6.0\Domain.dll
+C:\Users\ramazan.bakan\Desktop\odealprojects\VocationTrackingSystem\WebApplication5\bin\Debug\net6.0\Infrastructure.dll
+C:\Users\ramazan.bakan\Desktop\odealprojects\VocationTrackingSystem\WebApplication5\bin\Debug\net6.0\Presentation.dll
+C:\Users\ramazan.bakan\Desktop\odealprojects\VocationTrackingSystem\WebApplication5\bin\Debug\net6.0\Infrastructure.pdb
+C:\Users\ramazan.bakan\Desktop\odealprojects\VocationTrackingSystem\WebApplication5\bin\Debug\net6.0\Presentation.pdb
+C:\Users\ramazan.bakan\Desktop\odealprojects\VocationTrackingSystem\WebApplication5\bin\Debug\net6.0\Application.pdb
+C:\Users\ramazan.bakan\Desktop\odealprojects\VocationTrackingSystem\WebApplication5\bin\Debug\net6.0\Domain.pdb

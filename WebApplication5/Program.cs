@@ -1,19 +1,17 @@
 using System.Text;
-using Core.Interfaces;
-using Core.Services;
+using Application.Interfaces;
+using Application.Services;
+using Domain.Enums;
 using Infrastructure.Repositories;
-using WebApplication5.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Any;
 using Microsoft.OpenApi.Models;
-using WebApplication5.Infrastructure.Repositories;
-using WebApplication5.Interfaces;
-using WebApplication5.Middlewares;
-using WebApplication5.Data;
-using WebApplication5.Infrastructure.Services;
-using Core.Enums;
+using Infrastructure.Data;
+using Infrastructure.Services;
+using Presentation.Middlewares;
+using WebApplication5;
 
 
 var builder = WebApplication.CreateBuilder(args);

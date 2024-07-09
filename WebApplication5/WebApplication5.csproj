@@ -31,8 +31,13 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="DTOs\" />
-      <Folder Include="Request\" />
+      <Folder Include="Infrastructure\" />
+      <Folder Include="Interfaces\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
+      <ProjectReference Include="..\Presentation\Presentation.csproj" />
     </ItemGroup>
 
 </Project>

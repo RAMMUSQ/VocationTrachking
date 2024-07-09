@@ -1,6 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
-using WebApplication5.Data;
-using WebApplication5.Models;
+﻿using Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace WebApplication5.Job;
 

@@ -1836,6 +1836,61 @@
             "rid": "win"
           }
         }
+      },
+      "Application/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "AutoMapper": "6.0.2",
+          "Domain": "1.0.0",
+          "Microsoft.EntityFrameworkCore": "6.0.10",
+          "Presentation": "1.0.0",
+          "System.IdentityModel.Tokens.Jwt": "6.15.0"
+        },
+        "compile": {
+          "bin/placeholder/Application.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Application.dll": {}
+        }
+      },
+      "Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Domain.dll": {}
+        }
+      },
+      "Infrastructure/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Application": "1.0.0",
+          "Microsoft.EntityFrameworkCore": "6.0.30",
+          "Presentation": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Infrastructure.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Infrastructure.dll": {}
+        }
+      },
+      "Presentation/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Domain": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Presentation.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Presentation.dll": {}
+        }
       }
     }
   },
@@ -5890,6 +5945,26 @@
         "system.windows.extensions.nuspec",
         "useSharedDesignerContext.txt"
       ]
+    },
+    "Application/1.0.0": {
+      "type": "project",
+      "path": "../Application/Application.csproj",
+      "msbuildProject": "../Application/Application.csproj"
+    },
+    "Domain/1.0.0": {
+      "type": "project",
+      "path": "../Domain/Domain.csproj",
+      "msbuildProject": "../Domain/Domain.csproj"
+    },
+    "Infrastructure/1.0.0": {
+      "type": "project",
+      "path": "../Infrastructure/Infrastructure.csproj",
+      "msbuildProject": "../Infrastructure/Infrastructure.csproj"
+    },
+    "Presentation/1.0.0": {
+      "type": "project",
+      "path": "../Presentation/Presentation.csproj",
+      "msbuildProject": "../Presentation/Presentation.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -5900,6 +5975,7 @@
       "Hangfire.Core >= 1.8.14",
       "Hangfire.MemoryStorage >= 1.8.1.1",
       "Hangfire.MySql >= 0.0.7",
+      "Infrastructure >= 1.0.0",
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 6.0.0",
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 6.0.30",
       "Microsoft.AspNetCore.Identity.UI >= 6.0.30",
@@ -5907,6 +5983,7 @@
       "MySql.EntityFrameworkCore >= 6.0.1",
       "Newtonsoft.Json >= 13.0.3",
       "Pomelo.EntityFrameworkCore.MySql >= 6.0.1",
+      "Presentation >= 1.0.0",
       "Quartz >= 3.10.0",
       "Swashbuckle.AspNetCore >= 6.2.3",
       "System.IdentityModel.Tokens.Jwt >= 6.15.0"
@@ -5938,7 +6015,14 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\ramazan.bakan\\Desktop\\odealprojects\\VocationTrackingSystem\\Infrastructure\\Infrastructure.csproj": {
+              "projectPath": "C:\\Users\\ramazan.bakan\\Desktop\\odealprojects\\VocationTrackingSystem\\Infrastructure\\Infrastructure.csproj"
+            },
+            "C:\\Users\\ramazan.bakan\\Desktop\\odealprojects\\VocationTrackingSystem\\Presentation\\Presentation.csproj": {
+              "projectPath": "C:\\Users\\ramazan.bakan\\Desktop\\odealprojects\\VocationTrackingSystem\\Presentation\\Presentation.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

@@ -1,10 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Logging;
-using System.Linq;
-using System.Threading.Tasks;
-using WebApplication5.Services;
+﻿using Application.Interfaces;
 
-namespace WebApplication5.Middlewares
+namespace Presentation.Middlewares
 {
     public class AuthMiddleware
     {
