@@ -1,55 +1,36 @@
 ﻿using Hangfire;
-using Hangfire.MySql;
-using Microsoft.Extensions.Configuration;
+using Hangfire.MemoryStorage;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using System.IO;
+using VocationScheduler;
+using VocationScheduler.Jobs.Schedular;
 
-class Program
+var builder = WebApplication.CreateBuilder(args);
+
+// Hangfire configuration
+builder.Services.AddHangfire(config =>
+    config.UseMemoryStorage());
+builder.Services.AddHangfireServer();
+
+// Diğer bağımlılıkların yapılandırması
+builder.Services.AddScoped<IAnnualLeaveService, AnnualLeaveService>();
+
+var app = builder.Build();
+
+app.UseHangfireDashboard();
+app.UseHangfireServer();
+
+app.MapGet("/", () => "Vocation Scheduler is running...");
+
+// Hangfire server options
+var options = new BackgroundJobServerOptions
 {
-    static void Main(string[] args)
-    {
-        var builder = new HostBuilder()
-            .ConfigureAppConfiguration((context, config) =>
-            {
-                config.SetBasePath(Directory.GetCurrentDirectory());
-                config.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
-            })
-            .ConfigureServices((context, services) =>
-            {
-                var connectionString = context.Configuration.GetConnectionString("MySqlConStr");
+    WorkerCount = Environment.ProcessorCount * 5
+};
+app.UseHangfireServer(options);
 
-                services.AddHangfire(config =>
-                {
-                    config.UseStorage(new MySqlStorage(connectionString));
-                });
+// Zamanlanmış görevlerin tanımlanması
+RecurringJob.AddOrUpdate<Jobs>(job => job.UpdateAnnualLeave(),"1 * * * *");
+RecurringJob.AddOrUpdate<BirthdayJob>(job => job.CheckBirthdays(), Cron.Daily); // Her gün çalışacak şekilde ayarlandı
 
-                services.AddHangfireServer();
-
-                // RecurringJobService'i servis olarak ekleyin
-                services.AddHostedService<RecurringJobService>();
-
-                // Buraya diğer servisleri de ekleyebilirsiniz
-                // services.AddScoped<IMyService, MyService>();
-
-            }).UseConsoleLifetime();
-
-        var host = builder.Build();
-
-        using (var serviceScope = host.Services.CreateScope())
-        {
-            var services = serviceScope.ServiceProvider;
-            try
-            {
-                var backgroundJobClient = services.GetRequiredService<IBackgroundJobClient>();
-                backgroundJobClient.Enqueue(() => Console.WriteLine("Hangfire is configured and running!"));
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error: {ex.Message}");
-            }
-        }
-
-        host.Run();
-    }
-}
+app.Run();

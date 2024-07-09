@@ -12,6 +12,8 @@ public class AnnualLeaveRight
     
     public int NonAnnualLeaveDays { get; set; } // Yeni sütun
     
+    public DateTime? LastUpdated { get; set; } // Bu alanı ekleyin
+    
    // public bool HasUsedBirthdayLeave { get; set; } // Yeni alan
     public User User { get; set; }
     

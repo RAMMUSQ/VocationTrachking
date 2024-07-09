@@ -13,8 +13,13 @@
       <PackageReference Include="Hangfire.Core" Version="1.8.14" />
       <PackageReference Include="Hangfire.MemoryStorage" Version="1.8.1.1" />
       <PackageReference Include="Hangfire.MySql" Version="0.0.7" />
-      <PackageReference Include="linq2db" Version="6.0.0-preview.1" />
+      <PackageReference Include="linq2db" Version="0.0.1" />
+      <PackageReference Include="MailKit" Version="4.7.0" />
       <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.30" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
     </ItemGroup>
 
 </Project>
