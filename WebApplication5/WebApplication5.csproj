@@ -7,6 +7,12 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="AutoMapper" Version="6.0.2" />
+        <PackageReference Include="Hangfire" Version="1.8.14" />
+        <PackageReference Include="Hangfire.AspNetCore" Version="1.8.14" />
+        <PackageReference Include="Hangfire.Core" Version="1.8.14" />
+        <PackageReference Include="Hangfire.MemoryStorage" Version="1.8.1.1" />
+        <PackageReference Include="Hangfire.MySql" Version="0.0.7" />
         <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.0" />
         <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.30" />
         <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.30" />
@@ -14,24 +20,24 @@
         <PackageReference Include="MySql.EntityFrameworkCore" Version="6.0.1" />
         <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
         <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="6.0.1" />
+        <PackageReference Include="Quartz" Version="3.10.0" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
         <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.15.0" />
     </ItemGroup>
 
     <ItemGroup>
-      <Compile Remove="Presentation\Models\SetUserRoleToAdminRequest.cs" />
-      <Compile Remove="Presentation\Models\RegisterModel.cs" />
-      <Compile Remove="Presentation\Controllers\UserController.cs" />
-      <Compile Remove="Presentation\Controllers\GroupController.cs" />
-      <Compile Remove="Infrastructure\Repositories\UserRepository.cs" />
-      <Compile Remove="Infrastructure\Repositories\TokenRepository.cs" />
       <Compile Remove="Core\PermissionRequest.cs" />
       <Compile Remove="Application\Services\DTOs\UserDto.cs" />
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Infrastructure\Services\" />
-      <Folder Include="Presentation\Controllers\" />
+      <Folder Include="Infrastructure\" />
+      <Folder Include="Interfaces\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
+      <ProjectReference Include="..\Presentation\Presentation.csproj" />
     </ItemGroup>
 
 </Project>

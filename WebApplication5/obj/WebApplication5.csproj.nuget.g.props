@@ -20,5 +20,8 @@
   </ImportGroup>
   <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
     <PkgMicrosoft_Extensions_ApiDescription_Server Condition=" '$(PkgMicrosoft_Extensions_ApiDescription_Server)' == '' ">C:\Users\ramazan.bakan\.nuget\packages\microsoft.extensions.apidescription.server\3.0.0</PkgMicrosoft_Extensions_ApiDescription_Server>
+    <Pkglinq2db_t4models Condition=" '$(Pkglinq2db_t4models)' == '' ">C:\Users\ramazan.bakan\.nuget\packages\linq2db.t4models\0.0.1</Pkglinq2db_t4models>
+    <Pkglinq2db_MySql Condition=" '$(Pkglinq2db_MySql)' == '' ">C:\Users\ramazan.bakan\.nuget\packages\linq2db.mysql\1.0.7.3</Pkglinq2db_MySql>
+    <PkgHangfire_SqlServer Condition=" '$(PkgHangfire_SqlServer)' == '' ">C:\Users\ramazan.bakan\.nuget\packages\hangfire.sqlserver\1.8.14</PkgHangfire_SqlServer>
   </PropertyGroup>
 </Project>

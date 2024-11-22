@@ -1,0 +1,17 @@
+C:\Users\ramazan.bakan\Desktop\odealprojects\VocationTrackingSystem\Application\bin\Debug\net6.0\Application.deps.json
+C:\Users\ramazan.bakan\Desktop\odealprojects\VocationTrackingSystem\Application\bin\Debug\net6.0\Application.dll
+C:\Users\ramazan.bakan\Desktop\odealprojects\VocationTrackingSystem\Application\bin\Debug\net6.0\Application.pdb
+C:\Users\ramazan.bakan\Desktop\odealprojects\VocationTrackingSystem\Application\bin\Debug\net6.0\Domain.dll
+C:\Users\ramazan.bakan\Desktop\odealprojects\VocationTrackingSystem\Application\bin\Debug\net6.0\Presentation.dll
+C:\Users\ramazan.bakan\Desktop\odealprojects\VocationTrackingSystem\Application\bin\Debug\net6.0\Domain.pdb
+C:\Users\ramazan.bakan\Desktop\odealprojects\VocationTrackingSystem\Application\bin\Debug\net6.0\Presentation.pdb
+C:\Users\ramazan.bakan\Desktop\odealprojects\VocationTrackingSystem\Application\obj\Debug\net6.0\Application.csproj.AssemblyReference.cache
+C:\Users\ramazan.bakan\Desktop\odealprojects\VocationTrackingSystem\Application\obj\Debug\net6.0\Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ramazan.bakan\Desktop\odealprojects\VocationTrackingSystem\Application\obj\Debug\net6.0\Application.AssemblyInfoInputs.cache
+C:\Users\ramazan.bakan\Desktop\odealprojects\VocationTrackingSystem\Application\obj\Debug\net6.0\Application.AssemblyInfo.cs
+C:\Users\ramazan.bakan\Desktop\odealprojects\VocationTrackingSystem\Application\obj\Debug\net6.0\Application.csproj.CoreCompileInputs.cache
+C:\Users\ramazan.bakan\Desktop\odealprojects\VocationTrackingSystem\Application\obj\Debug\net6.0\Application.csproj.CopyComplete
+C:\Users\ramazan.bakan\Desktop\odealprojects\VocationTrackingSystem\Application\obj\Debug\net6.0\Application.dll
+C:\Users\ramazan.bakan\Desktop\odealprojects\VocationTrackingSystem\Application\obj\Debug\net6.0\refint\Application.dll
+C:\Users\ramazan.bakan\Desktop\odealprojects\VocationTrackingSystem\Application\obj\Debug\net6.0\Application.pdb
+C:\Users\ramazan.bakan\Desktop\odealprojects\VocationTrackingSystem\Application\obj\Debug\net6.0\ref\Application.dll
